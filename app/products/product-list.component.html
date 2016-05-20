@@ -11,13 +11,13 @@
                 />
             </div>
         </div>
-        <div class="row" *ngIf="listFilter.length">
+        <div class="row" *ngIf="listFilter">
             <div class="col-md-6">
                 <h3>Filtered by: {{ listFilter }}</h3>
             </div>
         </div>
         <div class="table-responsive">
-            <table class="table" *ngIf="products.length">
+            <table class="table" *ngIf="products && products.length">
                 <thead>
                     <tr>
                         <th>
@@ -42,7 +42,11 @@
                                  [style.margin.px]="imageMargin"
                             />
                         </td>
-                        <td>{{ product.productName }}</td>
+                        <td>
+                            <a [routerLink]="['ProductDetail', {id: product.productId}]">
+                                {{ product.productName }}
+                            </a>
+                        </td>
                         <td>{{ product.productCode | lowercase }}</td>
                         <td>{{ product.releaseDate }}</td>
                         <td>{{ product.price | currency:'USD':true:'1.1-2' }}</td>
